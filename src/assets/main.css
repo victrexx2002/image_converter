@@ -31,7 +31,7 @@ p{
 }
 p{
     padding: 0 5em;
-    color: #252525;
+    /* color: #252525; */
 
 }
 button {
@@ -81,14 +81,15 @@ button {
     transform: scale(0.9);
    }
    .dash_container{
-    border-color: 4px solid black;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 1em 0;
+    backdrop-filter: blur(10px);
    }
    .btns{
     display: flex;
     gap: 1em;
-   }
-   label{
-    margin: .7em;
+    margin-top: -2.5em;
    }
    .convert_btn,
    .download_btn{
