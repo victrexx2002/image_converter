@@ -9,13 +9,21 @@
         quality.
       </p>
       <div class="add-container">
-        <div>
-          <!-- <input type="file" @change="onFileChange" multiple  /> -->
-        </div>
-        <div>
-          <button @click="triggerFileInput" class="btn--btn" ref="fileInput">
-            Upload Files
-          </button>
+        <div class="drop-area" @drop.prevent="onDrop" @dragover.prevent>
+          <p>Drag and drop your files here</p>
+          <p>or</p>
+          <div>
+            <button @click="triggerFileInput" class="btn--btn">
+              Upload Files
+            </button>
+          </div>
+          <input
+            type="file"
+            @change="onFileChange"
+            multiple
+            ref="fileInput"
+            style="display: none"
+          />
         </div>
       </div>
 
@@ -92,6 +100,18 @@ const onFileChange = (e) => {
   }
 };
 
+const onDrop = (e) => {
+  const droppedFiles = e.dataTransfer.files;
+  for (let i = 0; i < droppedFiles.length; i++) {
+    files.value.push({
+      file: droppedFiles[i],
+      format: "png",
+      convertedUrl: null,
+      outputFileName: "",
+    });
+  }
+};
+
 const convertImage = async (fileObj, index) => {
   const file = fileObj.file;
 
@@ -128,5 +148,3 @@ const convertImage = async (fileObj, index) => {
   );
 };
 </script>
-
-<style scoped></style>
