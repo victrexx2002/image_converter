@@ -1,153 +1,111 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* border: 1px solid green; */
+
+}
+.main{
+    padding: 3em;
 }
 
-body{
-    font-family: 'Poppins', sans-serif;
-    /* background-image: linear-gradient(#f44336, #730228); */
-}
-.container,
-.convert_container,
-.label_container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 3em 0;
-    gap: 1em;
-}
-.label_container{
+.container{
+    box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, .1);
+    padding: 5em;
+    border-radius: 6px;
 }
 h1,
 p{
     text-align: center;
-    /* color: #fff; */
+    margin-bottom: 1em;
 }
-.container-txt{
-    margin-bottom: 1.5em;
+
+.add-container{
+    padding: 1em 2em 2em;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1em;
 }
-p{
-    padding: 0 5em;
-    /* color: #252525; */
+.add-container > div{
+    display: flex;
+    justify-content: center;
 
 }
-button {
-    align-items: center;
-    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
-    border: 0;
-    border-radius: 8px;
-    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-    box-sizing: border-box;
-    color: #FFFFFF;
+.drop-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    cursor: pointer;
     display: flex;
-    font-family: 'Poppins', sans-serif;
-    font-size: 12px;
+    flex-direction: column-reverse;
+  }
+  
+  .drop-area p {
+    margin: 0;
+  }
+  .drop-area > div{
+    display: flex;
     justify-content: center;
-    line-height: 1em;
-    max-width: 100%;
-    min-width: 140px;
-    padding: 3px;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all .3s;
-   }
-   
-   button:active,
-   button:hover {
-    outline: 0;
-   }
-   
-   button span {
-    background-color: rgb(5, 6, 45);
-    padding: 16px 24px;
-    border-radius: 6px;
-    width: 100%;
-    height: 100%;
-    transition: 300ms;
-   }
-   
-   button:hover span {
-    background: none;
-   }
-   
-   button:active {
-    transform: scale(0.9);
-   }
-   /* .dash_container{
-    border: 2px dashed rgba(255, 255, 255, 0.3);
-    background-color: rgba(255, 255, 255, 0.2);
+  }
+.file-container{
     padding: 1em 0;
-    backdrop-filter: blur(10px);
-   } */
-   .btns{
+}
+.file-container > div{
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    border-radius: 5px;
+}
+.file-name{
     display: flex;
-    gap: 1em;
-    margin-top: -2.5em;
-   }
-   .convert_btn,
-   .download_btn{
-    padding: .9em;
-    margin: 1em 0;
-   }
-   a{
-    text-decoration: none;
-   }
- /* Custom dropdown styling */
-.custom-select {
-    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.file-name > div > p{
+    text-align: left;
+    margin-bottom: .3em;
+}
+label{
+    margin-right: 1.5em;
+}
+.file-wrapper{
     display: flex;
-  }
-  
-  .select-selected {
-    background-color: #252525;
-    color: white;
-    padding: 10px;
+    justify-content: space-between;
+}
+.file-wrapper > div{
+    display: flex;
+    align-items: center;
+}
+.btns{
+    display: flex;
+    gap: 2em;
+}
+button.btn--btn{
+    padding: .8em 1.4em;
+    color: #fff;
+    background-color: rgba(107, 99, 255, 1);
+    outline: none;
     border: none;
+    border-radius: 3px;
+}
+
+.btn--btn:hover {
+    background-color: #FFF;
     cursor: pointer;
-    width: 300px;
-    border-radius: 10px;
+    color: rgba(107, 99, 255, 1);
+    /* border: .6px solid rgba(107, 99, 255, 1); */
   }
-  
-  .select-selected:after {
-    content: "";
-    position: absolute;
-    top: 45px;
-    right: 10px;
-    border: 6px solid transparent;
-    border-color: white transparent transparent transparent;
-  }
-  
-  .select-selected.select-arrow-active:after {
-    border-color: transparent transparent white transparent;
-    top: 7px;
-  }
-  
-  .select-items {
-    position: absolute;
-    background-color: #252525;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99;
-    max-height: 200px;
-    overflow-y: auto;
-    border-radius: 10px;
-    margin-top: 1em;
-  }
-  
-  .select-items div {
-    color: white;
-    padding: 8px 16px;
-    cursor: pointer;
-  }
-  
-  .select-items div:hover, .same-as-selected {
-    background-color: #252525fa;
-  }
+  @media screen and (max-width: 650px) {
+    .main{
+        padding: 1em;
+    }
+    .container{
+        padding: 2em;
+    }
+    .add-container{
+        padding: 1em .4em 2em;
+    }
+    .file-wrapper{
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+}

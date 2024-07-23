@@ -1,57 +1,77 @@
 <template>
-  <div class="homepage">
+  <div class="main">
     <div class="container">
-      <h1>Image Converter</h1>
-      <p class="container-txt">
+      <h1>Free Image Converter</h1>
+      <p>
         Convert your images files into JPG, PNG, SVG, or PDF like magic. Use
         Canva's free online image converter to your photos into a format suited
         to your platform or project, without worrying about losing image
         quality.
       </p>
-      <input type="file" @change="onFileChange" multiple ref="fileInput" />
-      <button @click="triggerFileInput">
-        <span class="text">Upload your image</span>
-      </button>
-
-      <div v-for="(fileObj, index) in files" :key="index" class="convert_container">
-        <div>
-          <div class="dash_container">
-            <p>{{ fileObj.file.name }}</p>
-            <p>{{ (fileObj.file.size / 1024).toFixed(2) }} KB</p>
+      <div class="add-container">
+        <div class="drop-area" @drop.prevent="onDrop" @dragover.prevent>
+          <p>Drag and drop your files here</p>
+          <p>or</p>
+          <div>
+            <button @click="triggerFileInput" class="btn--btn">
+              Upload Files
+            </button>
           </div>
-          <div class="label_container">
-            <div class="custom-select">
-              <label for="format">Output:</label>
-              <div class="" @click="toggleDropdown(index)">
-                {{ fileObj.format.toUpperCase() }}
-              </div>
-              <div v-show="fileObj.isOpen" class="select-items">
-                <div 
-                  v-for="option in options" 
-                  :key="option" 
-                  @click="selectOption(option, index)"
-                  :class="{ 'same-as-selected': fileObj.format === option }">
-                  {{ option.toUpperCase() }}
-                </div>
-              </div>
+          <input
+            type="file"
+            @change="onFileChange"
+            multiple
+            ref="fileInput"
+            style="display: none"
+          />
+        </div>
+      </div>
+
+      <div
+        v-for="(fileObj, index) in files"
+        :key="index"
+        class="file-container"
+      >
+        <div>
+          <!-- name of file -->
+          <div class="file-name">
+            <div>
+              <p>{{ fileObj.file.name }}</p>
+              <p>{{ (fileObj.file.size / 1024).toFixed(2) }} KB</p>
             </div>
           </div>
-        </div>
-        <div class="btns">
-          <button @click="convertImage(fileObj, index)" class="convert_btn">Convert</button>
-          <div v-if="fileObj.convertedUrl">
-            <a :href="fileObj.convertedUrl" :download="fileObj.outputFileName">
-              <button class="download_btn">Download</button>
-            </a>
+
+          <div class="file-wrapper">
+            <!-- output format -->
+            <div>
+              <div>
+                <label for="format">Output:</label>
+                <select v-model="fileObj.format" id="format">
+                  <option value="png">PNG</option>
+                  <option value="jpeg">JPG</option>
+                  <option value="webp">WEBP</option>
+                </select>
+              </div>
+            </div>
+            <!-- download and convert buttons -->
+            <div class="btns">
+              <button @click="convertImage(fileObj, index)" class="btn--btn">
+                Convert
+              </button>
+              <div v-if="fileObj.convertedUrl">
+                <a
+                  :href="fileObj.convertedUrl"
+                  :download="fileObj.outputFileName"
+                  ><button class="btn--btn">Download</button></a
+                >
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-
-
 
 <script setup>
 import { FFmpeg } from "@ffmpeg/ffmpeg";
@@ -61,7 +81,6 @@ import { ref } from "vue";
 const baseURL = "https://unpkg.com/@ffmpeg/core-mt@0.12.6/dist/esm";
 
 const files = ref([]);
-const options = ['png', 'jpeg', 'webp'];
 
 const ffmpeg = new FFmpeg();
 const fileInput = ref(null);
@@ -77,18 +96,20 @@ const onFileChange = (e) => {
       format: "png",
       convertedUrl: null,
       outputFileName: "",
-      isOpen: false
     });
   }
 };
 
-const toggleDropdown = (index) => {
-  files.value[index].isOpen = !files.value[index].isOpen;
-};
-
-const selectOption = (option, index) => {
-  files.value[index].format = option;
-  files.value[index].isOpen = false;
+const onDrop = (e) => {
+  const droppedFiles = e.dataTransfer.files;
+  for (let i = 0; i < droppedFiles.length; i++) {
+    files.value.push({
+      file: droppedFiles[i],
+      format: "png",
+      convertedUrl: null,
+      outputFileName: "",
+    });
+  }
 };
 
 const convertImage = async (fileObj, index) => {
@@ -127,7 +148,3 @@ const convertImage = async (fileObj, index) => {
   );
 };
 </script>
-
-
-
-<style scoped></style>
