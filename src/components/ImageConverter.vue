@@ -10,7 +10,7 @@
       </p>
       <input type="file" @change="onFileChange" multiple ref="fileInput" />
       <button @click="triggerFileInput">
-        <span class="text">Add More Files</span>
+        <span class="text">Upload your image</span>
       </button>
 
       <div v-for="(fileObj, index) in files" :key="index" class="convert_container">
@@ -22,7 +22,7 @@
           <div class="label_container">
             <div class="custom-select">
               <label for="format">Output:</label>
-              <div class="select-selected" @click="toggleDropdown(index)">
+              <div class="" @click="toggleDropdown(index)">
                 {{ fileObj.format.toUpperCase() }}
               </div>
               <div v-show="fileObj.isOpen" class="select-items">

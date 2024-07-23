@@ -7,7 +7,7 @@
 
 body{
     font-family: 'Poppins', sans-serif;
-    background-image: linear-gradient(#f44336, #730228);
+    /* background-image: linear-gradient(#f44336, #730228); */
 }
 .container,
 .convert_container,
@@ -24,7 +24,7 @@ body{
 h1,
 p{
     text-align: center;
-    color: #fff;
+    /* color: #fff; */
 }
 .container-txt{
     margin-bottom: 1.5em;
@@ -80,12 +80,12 @@ button {
    button:active {
     transform: scale(0.9);
    }
-   .dash_container{
+   /* .dash_container{
     border: 2px dashed rgba(255, 255, 255, 0.3);
     background-color: rgba(255, 255, 255, 0.2);
     padding: 1em 0;
     backdrop-filter: blur(10px);
-   }
+   } */
    .btns{
     display: flex;
     gap: 1em;
@@ -102,7 +102,7 @@ button {
  /* Custom dropdown styling */
 .custom-select {
     position: relative;
-    display: inline-block;
+    display: flex;
   }
   
   .select-selected {
