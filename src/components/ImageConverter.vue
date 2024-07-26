@@ -3,8 +3,8 @@
     <div class="container">
       <h1>Free Image Converter</h1>
       <p>
-        Convert your images files into JPG, PNG, SVG, or PDF like magic. Use
-        Canva's free online image converter to your photos into a format suited
+        Convert your images files into JPG, PNG or WEBP like magic. Use
+        this free online image converter to your photos into a format suited
         to your platform or project, without worrying about losing image
         quality.
       </p>
